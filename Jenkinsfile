@@ -31,7 +31,7 @@ pipeline {
             steps {
               script {
                   checkout scm
-                  docker.WithRegistry('', 'dockerUserID') {
+                  docker.WithRegistry('', 'DockerregistryID') {
                   def customImage = docker.build("bkamche/devops-pipeline:${env.BUILD_ID}")
                   customImage.push()
                 
