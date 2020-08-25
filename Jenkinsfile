@@ -27,9 +27,14 @@ pipeline {
             }
         }
         
-        stage('test') {
+        stage('build and push image') {
             steps {
-                echo 'Hello test'
+              script {
+                  checkout scm
+                  docker.WithRegistry('', 'dockerUserID') {
+                  def customImage = docker.build("bkamche/devops-pipeline:${env.BUILD_ID}")
+                  customImage.push()
+                
             }
         }
     }
